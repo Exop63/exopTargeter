@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace exop.targeter
+namespace Exop.Targeter
 {
     [CreateAssetMenu]
     public class GameEventsObject : ScriptableObject

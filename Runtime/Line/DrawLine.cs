@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace exop.targeter
+namespace Exop.Targeter
 {
-    [RequireComponent(typeof(LineRenderer)),AddComponentMenu("Exop/Targeter/")]
+    [RequireComponent(typeof(LineRenderer))]
     public class DrawLine : MonoBehaviour
     {
         // a pointer for collision point

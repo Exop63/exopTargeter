@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace exop.targeter
+namespace Exop.Targeter
 {
     [CreateAssetMenu(fileName = "StartPoint", menuName = "Exop/StartPoint")]
 public class StartPointData : ScriptableObject

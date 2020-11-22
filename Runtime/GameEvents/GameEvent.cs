@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-namespace exop.targeter
+namespace Exop.Targeter
 {
     public class GameEvent : MonoBehaviour
     {
