@@ -30,47 +30,46 @@ namespace Exop.Targeter
             // Debug.Log("Positon changeing hit2D:" + this.hit2D);
             if (hit2D)
             {
-
-                if (this.reflectionIndicator == null && reflectionPoint)
-                {
-                    this.reflectionIndicator = Instantiate<GameObject>(reflectionPoint);
-                    this.reflectionIndicator.name = "Indicator";
-                }
                 // two position for line renderer
                 Vector3[] positions = new Vector3[2];
                 positions[0] = startPointData.startPosition;
                 positions[1] = hit2D.centroid;
-
                 lineRenderer.SetPositions(positions);
-
-                this.showIndicator(positions[1]);
-                this.Show();
+                this.ShowLine();
+                this.showIndicator();
             }
         }
 
 
-        private void showIndicator(Vector2 position)
+        private void showIndicator()
         {
-            this.reflectionIndicator.gameObject.SetActive(true);
-            this.reflectionIndicator.transform.position = position;
+            if (reflectionPoint)
+            {
+                if (this.reflectionIndicator == null)
+                {
+                    this.reflectionIndicator = Instantiate<GameObject>(reflectionPoint);
+                    this.reflectionIndicator.name = "Indicator";
+                }
+            }
+            else return;
+
+            this.reflectionIndicator.SetActive(this.startPointData.canShot);
+            this.reflectionIndicator.transform.position = this.lineRenderer.GetPosition(1);
 
         }
         // Show line
-        public void Show()
+        public void ShowLine()
         {
-            if (this.reflectionIndicator)
-            {
-                this.lineRenderer.enabled = this.startPointData.canShot;
-                this.reflectionIndicator.SetActive(this.startPointData.canShot);
-            }
+            this.lineRenderer.enabled = this.startPointData.canShot;
+
         }
         // Hide line
         public void Hide()
         {
             // Debug.Log("Hide Line");
+            this.lineRenderer.enabled = false;
             if (this.reflectionIndicator)
             {
-                this.lineRenderer.enabled = false;
                 this.reflectionIndicator.SetActive(false);
             }
         }
