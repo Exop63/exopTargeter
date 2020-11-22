@@ -8,6 +8,7 @@ namespace Exop.Targeter
     public class DrawLine : MonoBehaviour
     {
         // a pointer for collision point
+        [Header("Reflection point sprite")]
         public GameObject reflectionPoint;
         public StartPointData startPointData;
         private LineRenderer lineRenderer;
@@ -32,9 +33,12 @@ namespace Exop.Targeter
             {
                 // two position for line renderer
                 Vector3[] positions = new Vector3[2];
+
                 positions[0] = startPointData.startPosition;
                 positions[1] = hit2D.centroid;
+
                 lineRenderer.SetPositions(positions);
+
                 this.ShowLine();
                 this.showIndicator();
             }
@@ -72,11 +76,6 @@ namespace Exop.Targeter
             {
                 this.reflectionIndicator.SetActive(false);
             }
-        }
-        void OnDrawGizmos()
-        {
-            // Gizmos.color = Color.red;
-            // Gizmos.DrawLine(startPointData.startPosition, this.startPointData.startPosition + startPointData.direction * 5);
         }
     }
 }
