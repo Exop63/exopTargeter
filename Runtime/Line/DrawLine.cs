@@ -24,7 +24,7 @@ namespace Exop.Targeter
             if (hit2D)
             {
 
-                if (this.reflectionIndicator == null)
+                if (this.reflectionIndicator == null && reflectionPoint)
                 {
                     this.reflectionIndicator = Instantiate<GameObject>(reflectionPoint);
                     this.reflectionIndicator.name = "Indicator";
