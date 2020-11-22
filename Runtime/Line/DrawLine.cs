@@ -10,11 +10,18 @@ namespace Exop.Targeter
         // a pointer for collision point
         public GameObject reflectionPoint;
         public StartPointData startPointData;
-        public LineRenderer lineRenderer;
+        private LineRenderer lineRenderer;
 
         private RaycastHit2D hit2D;
         private GameObject reflectionIndicator;
 
+        private void Awake()
+        {
+            if (lineRenderer == null)
+            {
+                this.lineRenderer = this.GetComponent<LineRenderer>();
+            }
+        }
         public void setPositions()
         {
 
