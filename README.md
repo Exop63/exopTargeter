@@ -1,5 +1,7 @@
 Simple Targeting system for BrickBreak games.
 
+[Demo Project Unity 2019.x](https://github.com/Exop63/TargetingForBrickBreaker "Demo Project")
+
 Setup
 1. MainCamera must be ortographic
 2. create startpoint and game event asset in create menu on assets.
