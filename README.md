@@ -16,6 +16,6 @@ if you want to draw a line
 2. add DrawLine script
     * setup you must a indicator for start point just a sprite prefap
 3. add start point game event and setup
-    * set on Cahange event Drawline > setPositions
+    * set on Change event Drawline > setPositions
 4. add Game Event 
     * add end Drag event to DrawLine > Hide
