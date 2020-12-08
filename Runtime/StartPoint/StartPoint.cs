@@ -6,7 +6,9 @@ namespace Exop.Targeter
     public class StartPoint : MonoBehaviour
     {
         public StartPointData startPointData;
-        public GameEventsObject gameEventsObject;
+        public GameEvent OnDragEnd;
+        public GameEvent OnDragStart;
+
 
         void Update()
         {
@@ -14,13 +16,14 @@ namespace Exop.Targeter
 
             if (Input.GetKey(KeyCode.Mouse0))
             {
+                OnDragStart.Raise();
                 Vector2 currentPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Debug.Log("Farenin şuanki world Konumu:" + currentPosition);
                 this.startPointData.changeDirection(currentPosition);
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                this.gameEventsObject.DragRaise(this.startPointData.canShot);
+                this.OnDragEnd.Raise();
             }
         }
     }

@@ -1,25 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-namespace Exop.Targeter
+
+
+[CreateAssetMenu(fileName = "StartPoint", menuName = "Exop/GameEvent")]
+public class GameEvent : ScriptableObject
 {
-    public class GameEvent : MonoBehaviour
+    private List<GameEventListener> listeners =
+        new List<GameEventListener>();
+
+    public void Raise()
     {
-        public GameEventsObject eventsObject;
-        public UnityEvent shot;
-        public UnityEvent endDrag;
-
-        void OnEnable()
-        {
-            this.eventsObject.ShotRegister(this);
-        }
-        void OnDisable()
-        {
-            this.eventsObject.ShotUnRegister(this);
-        }
-
-
-
+        for (int i = listeners.Count - 1; i >= 0; i--)
+            listeners[i].OnEventRaised();
     }
+
+    public void RegisterListener(GameEventListener listener)
+    { listeners.Add(listener); }
+
+    public void UnregisterListener(GameEventListener listener)
+    { listeners.Remove(listener); }
 }

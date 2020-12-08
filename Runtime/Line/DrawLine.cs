@@ -7,6 +7,8 @@ namespace Exop.Targeter
     [RequireComponent(typeof(LineRenderer))]
     public class DrawLine : MonoBehaviour
     {
+        [Header("Draw a debug line")]
+        public bool debug=false;
         // a pointer for collision point
         [Header("Reflection point sprite")]
         public GameObject reflectionPoint;
@@ -15,19 +17,30 @@ namespace Exop.Targeter
 
         private RaycastHit2D hit2D;
         private GameObject reflectionIndicator;
+        private bool isTargeting=false;
 
         private void Awake()
         {
+                this.lineRenderer = this.GetComponent<LineRenderer>();
             if (lineRenderer == null)
             {
-                this.lineRenderer = this.GetComponent<LineRenderer>();
+                Debug.LogError("LineRenderer not found!");
+                Destroy(this);
+            }
+
+            Hide();
+        }
+
+         void Update() {
+            if(startPointData.canShot && isTargeting) {
+                setPositions();
             }
         }
         public void setPositions()
         {
 
             // check can draw line 
-            this.hit2D = Physics2D.CircleCast(this.startPointData.startPosition, .4f, this.startPointData.direction, 20);
+            this.hit2D = Physics2D.CircleCast(this.startPointData.startPosition, .4f, this.startPointData.direction, 200);
             // Debug.Log("Positon changeing hit2D:" + this.hit2D);
             if (hit2D)
             {
@@ -42,6 +55,8 @@ namespace Exop.Targeter
                 this.ShowLine();
                 this.showIndicator();
             }
+
+        
         }
 
 
@@ -70,6 +85,8 @@ namespace Exop.Targeter
         // Hide line
         public void Hide()
         {
+            isTargeting=false;
+
             // Debug.Log("Hide Line");
             this.lineRenderer.enabled = false;
             if (this.reflectionIndicator)
@@ -77,5 +94,9 @@ namespace Exop.Targeter
                 this.reflectionIndicator.SetActive(false);
             }
         }
+        public void StartTargeting(){
+            isTargeting=true;
+        }
     }
+
 }
